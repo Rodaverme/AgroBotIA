@@ -1,107 +1,37 @@
+"""
+Módulo: costo.py
+
+Descripción:
+    Este módulo implementa el algoritmo de búsqueda de costo uniforme para el problema del AgroBot.
+
+Autor: Agarcia07
+Versión: 1.0
+"""
+
+# Imports
 import heapq
 import time
 from itertools import count
 from mundo import Mundo
-
-class ResultadoBusqueda:
-    def __init__(
-        self,
-        camino,
-        costo,
-        nodos_expandidos,
-        profundidad,
-        tiempo_ejecucion
-    ):
-        self.camino = camino
-        self.costo = costo
-        self.nodos_expandidos = nodos_expandidos
-        self.profundidad = profundidad
-        self.tiempo_ejecucion = tiempo_ejecucion
-
-class Estado:
-    def __init__(
-        self,
-        posicion,
-        cultivos_pendientes,
-        fertilizante,
-        combustible,
-    ):
-        self.posicion = posicion
-        self.cultivos_pendientes = cultivos_pendientes
-        self.fertilizante = fertilizante
-        self.combustible = combustible
-
-def crear_estado_inicial(mundo):
-    """Crea el estado inicial a partir del mundo."""
-    posicion_inicial = mundo.agrobot
-    cultivos_pendientes = frozenset(mundo.cultivos_secos)
-    fertilizante = 0
-    combustible = None 
-        
-    return Estado(
-        posicion_inicial, 
-        cultivos_pendientes, 
-        fertilizante, 
-        combustible
-    )
-
-def generar_sucesores(estado, mundo):
-    """Genera los estados sucesores a partir del estado actual."""
-    sucesores = []
-    fila, columna = estado.posicion
-
-    vecinos = mundo.vecinos(fila, columna)
-
-    for vecino in vecinos:
-
-        if vecino == mundo.deposito:
-            nuevo_fertilizante = 2
-        else:
-            nuevo_fertilizante = estado.fertilizante
-
-        nuevos_cultivos = estado.cultivos_pendientes
-
-        if vecino in estado.cultivos_pendientes and nuevo_fertilizante > 0:
-            nuevos_cultivos = estado.cultivos_pendientes - {vecino}
-            nuevo_fertilizante -= 1
-
-        nuevo_combustible = estado.combustible
-
-        if vecino == mundo.avioneta and estado.combustible is None:
-            nuevo_combustible = 30
-        elif estado.combustible is not None and estado.combustible > 0:
-            nuevo_combustible = estado.combustible - 1
-
-        if estado.combustible is not None and estado.combustible > 0:
-            costo = 0.5
-        else:
-            costo = 1
-
-        nuevo_estado = Estado(
-            posicion=vecino,
-            cultivos_pendientes=nuevos_cultivos,
-            fertilizante=nuevo_fertilizante,
-            combustible=nuevo_combustible,
-        )
-        sucesores.append((nuevo_estado, costo))
-
-    return sucesores
-
-def es_meta(estado):
-    """Verifica si el estado es un estado meta."""
-    return not estado.cultivos_pendientes
-
-def clave_estado(estado):
-    """Genera una clave única para un estado, útil para evitar ciclos."""
-    return (
-        estado.posicion,
-        estado.cultivos_pendientes,
-        estado.fertilizante,
-        estado.combustible,
-    )
+from resultado import ResultadoBusqueda
+from problema import (
+    crear_estado_inicial,
+    generar_sucesores,
+    es_meta,
+    clave_estado,
+)
 
 def busqueda_costo_uniforme(mundo):
+    """
+    Implementa el algoritmo de búsqueda de costo uniforme para encontrar el camino óptimo en el problema del AgroBot.
 
+    Parámetros:
+        mundo (Mundo): Una instancia de la clase Mundo que representa el entorno del problema.
+
+    Retorna:
+        ResultadoBusqueda: El resultado de la búsqueda si se encuentra una solución.
+        None: En caso contrario.
+    """
     inicio = time.perf_counter()
 
     contador = count()  # Contador para desempatar nodos con el mismo costo
@@ -148,6 +78,7 @@ def busqueda_costo_uniforme(mundo):
 
     return None # No se encontró solución
 
+# Ejecución del algoritmo si se ejecuta este archivo directamente
 if __name__ == "__main__":
     mundo = Mundo.desde_archivo("Prueba1.txt")
     resultado = busqueda_costo_uniforme(mundo)
