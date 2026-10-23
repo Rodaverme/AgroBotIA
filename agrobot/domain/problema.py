@@ -9,7 +9,7 @@ Versión: 1.0
 """
 
 # Imports
-from estado import Estado
+from agrobot.domain.estado import Estado
 
 def crear_estado_inicial(mundo):
     """
