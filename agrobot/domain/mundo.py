@@ -119,15 +119,3 @@ class Mundo:
         return "\n".join(" ".join(str(v) for v in fila) for fila in self.matriz)
 
 
-if __name__ == "__main__":
-    ruta = sys.argv[1] if len(sys.argv) > 1 else "Prueba1.txt"
-    mundo = Mundo.desde_archivo(ruta)
-
-    print(f"Mundo de {mundo.filas}x{mundo.columnas}\n")
-    print(mundo)
-  
-    print("\nConteo por valor:", mundo.resumen())
-    print("AgroBot:", mundo.agrobot)
-    print("Depósito de fertilizante:", mundo.deposito)
-    print("Avioneta:", mundo.avioneta)
-    print("Cultivos secos:", mundo.cultivos_secos)

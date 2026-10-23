@@ -12,9 +12,9 @@ Versión: 1.0
 import heapq
 import time
 from itertools import count
-from mundo import Mundo
-from resultado import ResultadoBusqueda
-from problema import (
+from agrobot.domain.mundo import Mundo
+from agrobot.busqueda.resultado import ResultadoBusqueda
+from agrobot.domain.problema import (
     crear_estado_inicial,
     generar_sucesores,
     es_meta,
@@ -80,14 +80,7 @@ def busqueda_costo_uniforme(mundo):
 
 # Ejecución del algoritmo si se ejecuta este archivo directamente
 if __name__ == "__main__":
-    mundo = Mundo.desde_archivo("Prueba1.txt")
-    resultado = busqueda_costo_uniforme(mundo)
-
-    if resultado is not None:
-        print("Costo:", resultado.costo)
-        print("Nodos expandidos:", resultado.nodos_expandidos)
-        print("Profundidad:", resultado.profundidad)
-        print("Tiempo:", resultado.tiempo_ejecucion)
-        print("Camino:", resultado.camino)
-    else:
-        print("No se encontró solución")
+    from pathlib import Path
+    ruta = Path(__file__).resolve().parent[2]/"data"/"Prueba1.txt"
+    mundo = Mundo.desde_archivo(ruta)
+    
