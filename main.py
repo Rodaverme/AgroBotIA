@@ -1,8 +1,11 @@
 import tkinter as tk
 from pathlib import Path
 
-from agrobot.busqueda import costo
+from agrobot.busqueda.Costo import costo
+from agrobot.busqueda.Amplitud.Amplitud import Busqueda_no_informada_por_amplitud
 from agrobot.ui.interfaz import BusquedaApp
+# En main.py cambiar esta línea:
+
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -14,7 +17,7 @@ def pendiente(m):
 def main():
     algoritmos = {
         "No informada": {
-            "Amplitud": pendiente,
+            "Amplitud": Busqueda_no_informada_por_amplitud,
             "Costo uniforme": costo.busqueda_costo_uniforme,
             "Profundidad evitando ciclos": pendiente,
         },

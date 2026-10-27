@@ -13,7 +13,7 @@ import heapq
 import time
 from itertools import count
 from agrobot.domain.mundo import Mundo
-from agrobot.busqueda.resultado import ResultadoBusqueda
+from agrobot.busqueda.Costo.resultado import ResultadoBusqueda
 from agrobot.domain.problema import (
     crear_estado_inicial,
     generar_sucesores,
