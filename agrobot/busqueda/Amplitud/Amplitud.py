@@ -53,17 +53,3 @@ def Busqueda_no_informada_por_amplitud(mundo):
 
     return None  # No se encontró solución
 
-
-# Ejecución del algoritmo si se ejecuta este archivo directamente
-if __name__ == "__main__":
-    from pathlib import Path
-    ruta = Path(__file__).resolve().parent.parent.parent / "data" / "Prueba1.txt"
-    mundo = Mundo.desde_archivo(ruta)
-    resultado = Busqueda_no_informada_por_amplitud(mundo)
-    
-    if resultado:
-        print("=== RESULTADO BFS ===")
-        print(f"Profundidad: {resultado.profundidad}")
-        print(f"Nodos expandidos: {resultado.nodos_expandidos}")
-        print(f"Costo: {resultado.costo}")
-        print(f"Tiempo: {resultado.tiempo_ejecucion:.6f} s")
