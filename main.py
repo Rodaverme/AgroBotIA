@@ -3,6 +3,7 @@ from pathlib import Path
 
 from agrobot.busqueda.Costo import costo
 from agrobot.busqueda.Amplitud.Amplitud import Busqueda_no_informada_por_amplitud
+from agrobot.busqueda.Avara.Avara import busqueda_Avara
 from agrobot.ui.interfaz import BusquedaApp
 # En main.py cambiar esta línea:
 
@@ -22,13 +23,13 @@ def main():
             "Profundidad evitando ciclos": pendiente,
         },
         "Informada": {
-            "Avara": pendiente,
+            "Avara": busqueda_Avara,
             "A*": pendiente,
         },
     }
 
     root = tk.Tk()
-    BusquedaApp(root, algoritmos, ruta_mapa=DATA_DIR / "Prueba1.txt")
+    BusquedaApp(root, algoritmos, ruta_mapa=DATA_DIR / "Prueba3.txt")
     root.mainloop()
 
 
