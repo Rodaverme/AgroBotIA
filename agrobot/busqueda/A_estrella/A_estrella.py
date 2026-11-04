@@ -51,7 +51,7 @@ def busqueda_A_estrella(mundo):
     }
 
     while frontera:
-        prioridad_actual, desempate, costo_actual, estado_actual, camino_actual = heapq.heappop(frontera)
+        _, _, costo_actual, estado_actual, camino_actual = heapq.heappop(frontera)
 
         if costo_actual > mejores_costos[clave_estado(estado_actual)]:
             continue
