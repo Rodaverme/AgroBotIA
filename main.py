@@ -4,6 +4,7 @@ from pathlib import Path
 from agrobot.busqueda.Costo import costo
 from agrobot.busqueda.Amplitud.Amplitud import Busqueda_no_informada_por_amplitud
 from agrobot.busqueda.Avara.Avara import busqueda_Avara
+from agrobot.busqueda.A_estrella.A_estrella import busqueda_A_estrella
 from agrobot.ui.interfaz import BusquedaApp
 # En main.py cambiar esta línea:
 
@@ -24,7 +25,7 @@ def main():
         },
         "Informada": {
             "Avara": busqueda_Avara,
-            "A*": pendiente,
+            "A*": busqueda_A_estrella,
         },
     }
 

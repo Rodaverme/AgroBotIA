@@ -76,11 +76,4 @@ def busqueda_costo_uniforme(mundo):
                     (nuevo_costo, next(contador), sucesor, camino_actual + [sucesor.posicion])
                 )    
 
-    return None # No se encontró solución
-
-# Ejecución del algoritmo si se ejecuta este archivo directamente
-if __name__ == "__main__":
-    from pathlib import Path
-    ruta = Path(__file__).resolve().parent[2]/"data"/"Prueba1.txt"
-    mundo = Mundo.desde_archivo(ruta)
-    
+    return None # No se encontró solución  
