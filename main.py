@@ -3,6 +3,7 @@ from pathlib import Path
 
 from agrobot.busqueda.Costo import costo
 from agrobot.busqueda.Amplitud.Amplitud import Busqueda_no_informada_por_amplitud
+from agrobot.busqueda.Profundidad.Profundidad import Busqueda_no_informada_por_profundidad
 from agrobot.busqueda.Avara.Avara import busqueda_Avara
 from agrobot.busqueda.A_estrella.A_estrella import busqueda_A_estrella
 from agrobot.ui.interfaz import BusquedaApp
@@ -21,7 +22,7 @@ def main():
         "No informada": {
             "Amplitud": Busqueda_no_informada_por_amplitud,
             "Costo uniforme": costo.busqueda_costo_uniforme,
-            "Profundidad evitando ciclos": pendiente,
+            "Profundidad evitando ciclos": Busqueda_no_informada_por_profundidad,
         },
         "Informada": {
             "Avara": busqueda_Avara,

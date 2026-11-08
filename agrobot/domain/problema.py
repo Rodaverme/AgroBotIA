@@ -111,4 +111,5 @@ def clave_estado(estado):
         estado.cultivos_pendientes,
         estado.fertilizante,
         estado.combustible,
+    
     )

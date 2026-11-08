@@ -21,3 +21,4 @@ class Estado:
         self.cultivos_pendientes = cultivos_pendientes
         self.fertilizante = fertilizante
         self.combustible = combustible
+        
